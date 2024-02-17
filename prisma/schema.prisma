@@ -3,8 +3,76 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
   relationMode = "prisma"
 }
 
+model Account {
+  id               Int               @id @default(autoincrement())
+  clerkId          String            @unique
+  role             Role              @default(USER)
+  BatteryPassports BatteryPassport[]
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model BatteryPassport {
+  id           Int            @id @default(autoincrement())
+  Account      Account?       @relation(fields: [accountId], references: [id])
+  accountId    Int?
+  soh          Float
+  cellType     CELL_TYPE
+  manufacturer MANUFACTURER
+  status       BATTERY_STATUS @default(FIRST_LIFE)
+
+  @@index([accountId])
+}
+
+enum BATTERY_STATUS {
+  FIRST_LIFE
+  SECOND_LIFE
+  REQUESTED
+  PURCHASED
+  RECYCLED
+}
+
+enum CELL_TYPE {
+  LITHIUM_ION
+  NICKEL_METAL_HYDRIDE
+  LITHIUM_POLYMER
+  LITHIUM_IRON_PHOSPHATE
+}
+
+enum MANUFACTURER {
+  LG
+  SAMSUNG
+  PANASONIC
+}
+
+model Order {
+  id              Int          @id @default(autoincrement())
+  orderDate       DateTime
+  orderStatus     ORDER_STATUS @default(PENDING)
+  batteryType     String
+  desiredSohRange SOH_RANGE    @default(EIGHTY_TO_EIGHTY_FIVE)
+  orderAmount     Int
+  waitTimeMonths  Int
+}
+
+enum SOH_RANGE {
+  EIGHTY_TO_EIGHTY_FIVE
+  EIGHTY_SIX_TO_NINETY
+  NINETY_ONE_TO_NINETY_FIVE
+  NINETY_SIX_TO_ONE_HUNDRED
+}
+
+enum ORDER_STATUS {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
