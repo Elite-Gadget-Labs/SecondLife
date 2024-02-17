@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.7",
+    "@tabler/icons-react": "^2.47.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.0.5",
     "lucide-react": "^0.331.0",
+    "mini-svg-data-uri": "^1.4.4",
     "next": "14.1.0",
     "prisma": "^5.9.1",
     "react": "^18",
