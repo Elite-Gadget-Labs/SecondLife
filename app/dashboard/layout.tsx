@@ -9,40 +9,42 @@ import { useEffect } from "react";
 // };
 
 export default function HomeLayout({
-  children, // will be a page or nested layout
+    children, // will be a page or nested layout
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  const { isSignedIn, user } = useUser();
+    const { isSignedIn, user } = useUser();
 
-  let userId = {
-    clerkId: user?.id,
-  };
+    let userId = {
+        clerkId: user?.id,
+    };
 
-  const getUserInfo = async () => {
-    try {
-      const response = await fetch("/api/accounts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userId),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const getUserInfo = async () => {
+        try {
+            const response = await fetch("/api/accounts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userId),
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  useEffect(() => {
-    if (isSignedIn) {
-      getUserInfo().then();
-    }
-  }, [isSignedIn]);
+    useEffect(() => {
+        if (isSignedIn) {
+            getUserInfo().then();
+        }
+    }, [isSignedIn]);
 
-  return (
-    <section>
-      <Navbar />
-      {children}
-    </section>
-  );
+    return (
+        <section>
+            <Navbar />
+            <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                {children}
+            </div>
+        </section>
+    );
 }
