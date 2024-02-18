@@ -8,8 +8,6 @@ export default function Home() {
   return (
     <main>
       <LampDemo />
-      {/* <BatteryOrders /> */}
-      {/*<BatteryInventory />*/}
     </main>
   );
 }

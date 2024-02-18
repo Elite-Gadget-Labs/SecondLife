@@ -43,6 +43,7 @@ export async function PUT(
     where: { id: batteryPassport.id },
     data: {
       soh: body.soh,
+      eolTimeMonths: body.eolTimeMonths,
       status: body.status,
     },
   });

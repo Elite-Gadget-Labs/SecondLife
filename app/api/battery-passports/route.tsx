@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
       model: body.model,
       purchaseDate: body.purchaseDate,
       homeAddress: body.homeAddress,
+      eolTimeMonths: body.eolTimeMonths,
     },
   });
 

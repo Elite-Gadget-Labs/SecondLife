@@ -21,15 +21,16 @@ enum Role {
 }
 
 model BatteryPassport {
-  id           Int            @id @default(autoincrement())
-  clerkId      String
-  soh          Int
-  cellType     CELL_TYPE
-  manufacturer MANUFACTURER
-  status       BATTERY_STATUS @default(FIRST_LIFE)
-  model           EV_MODEL
-  purchaseDate String
-  homeAddress  String
+  id            Int            @id @default(autoincrement())
+  clerkId       String
+  soh           Int
+  eolTimeMonths Int
+  cellType      CELL_TYPE
+  manufacturer  MANUFACTURER
+  status        BATTERY_STATUS @default(FIRST_LIFE)
+  model         EV_MODEL
+  purchaseDate  String
+  homeAddress   String
 
   @@index([clerkId])
 }
