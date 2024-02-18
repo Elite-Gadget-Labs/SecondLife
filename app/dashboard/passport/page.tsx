@@ -9,7 +9,13 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { HeartIcon, FactoryIcon, BatteryIcon, CalendarIcon } from "./icons";
+import {
+    HeartIcon,
+    FactoryIcon,
+    BatteryIcon,
+    CalendarIcon,
+    StatusIcon,
+} from "./icons";
 import { useEffect, useState } from "react";
 
 const PassportPage = () => {
@@ -35,7 +41,7 @@ const PassportPage = () => {
                         <BatteryIcon />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">$45,231.89</div>
+                        <div className="text-2xl font-bold">{records.cellType}</div>
                     </CardContent>
                 </Card>
                 <Card>
@@ -44,27 +50,27 @@ const PassportPage = () => {
                         <FactoryIcon />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">$45,231.89</div>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Age</CardTitle>
-                        <CalendarIcon />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">+12,234</div>
+                        <div className="text-2xl font-bold">{records.manufacturer}</div>
                     </CardContent>
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">
-                            Current Health
+                            Purchased Date
                         </CardTitle>
-                        <HeartIcon />
+                        <CalendarIcon />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">+573</div>
+                        <div className="text-2xl font-bold">{records.purchaseDate}</div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Status</CardTitle>
+                        <StatusIcon />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">{records.status}</div>
                     </CardContent>
                 </Card>
             </div>
