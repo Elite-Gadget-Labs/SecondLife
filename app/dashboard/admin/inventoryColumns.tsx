@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 
 export const columns: ColumnDef[] = [
     {
-        accessorKey: "uuid",
-        header: "UUID",
+        accessorKey: "id",
+        header: "ID",
     },
     {
         accessorKey: "clerkId",

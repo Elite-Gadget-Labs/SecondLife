@@ -1,59 +1,28 @@
+"use client";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BatteryInventory } from "@/components/battery-inventory";
 import { BatteryOrders } from "@/components/battery-orders";
 import { DataTable } from "@/app/dashboard/admin/data-table";
 import { columns } from "@/app/dashboard/admin/inventoryColumns";
-
-const data = [
-    {
-        uuid: "123456789",
-        clerkId: "001",
-        cellType: "Lithium-ion",
-        manufacturer: "Tesla",
-        eolTime: "2025",
-        soh: 97,
-        status: "First Life",
-    },
-    {
-        uuid: "987654321",
-        clerkId: "002",
-        cellType: "Nickel-Metal Hydride",
-        manufacturer: "Toyota",
-        eolTime: "2023",
-        soh: 40,
-        status: "Purchased",
-    },
-    {
-        uuid: "456789123",
-        clerkId: "003",
-        cellType: "Lithium-ion",
-        manufacturer: "Nissan",
-        eolTime: "2024",
-        soh: 92,
-        status: "Second Life",
-    },
-    {
-        uuid: "789123456",
-        clerkId: "004",
-        cellType: "Nickel-Metal Hydride",
-        manufacturer: "General Motors",
-        eolTime: "2026",
-        soh: 89,
-        status: "Recycled",
-    },
-    {
-        uuid: "321654987",
-        clerkId: "005",
-        cellType: "Lithium-ion",
-        manufacturer: "BMW",
-        eolTime: "2027",
-        soh: 82,
-        status: "Requested",
-    },
-];
+import { useEffect, useState } from "react";
 
 const AdminPage = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("/api/all-batteries");
+                const data = await response.json();
+                setData(data);
+            } catch (error) {
+                console.error("Error fetching battery data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <>
             <h1 className="text-2xl font-semibold pb-8">EV Battery Dashboard</h1>
