@@ -20,7 +20,7 @@ export async function GET(
   return NextResponse.json(batteryPassport, { status: 201 }); // 201 = Created
 }
 
-// update a specific Battery passport by their id
+// update a specific Battery passport by its id
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }

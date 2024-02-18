@@ -58,7 +58,7 @@ enum MANUFACTURER {
 
 model Order {
   id              Int          @id @default(autoincrement())
-  orderDate       DateTime
+  orderDate       String
   orderStatus     ORDER_STATUS @default(PENDING)
   batteryType     String
   desiredSohRange SOH_RANGE    @default(EIGHTY_TO_EIGHTY_FIVE)
