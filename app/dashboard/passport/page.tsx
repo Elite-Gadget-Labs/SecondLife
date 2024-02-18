@@ -10,11 +10,22 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { HeartIcon, FactoryIcon, BatteryIcon, CalendarIcon } from "./icons";
+import { useEffect, useState } from "react";
 
 const PassportPage = () => {
     const searchParams = useSearchParams();
-    const cityName = searchParams.get("id");
-    console.log("city", cityName);
+    const passportId = searchParams.get("id");
+    const [records, setRecords] = useState([]);
+
+    useEffect(() => {
+        fetch(`/api/battery-passports/${passportId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setRecords(data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
     return (
         <div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-4">
