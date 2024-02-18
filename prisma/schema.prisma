@@ -3,17 +3,16 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
-  relationMode = "prisma"
+  relationMode      = "prisma"
 }
 
 model Account {
-  id               Int               @id @default(autoincrement())
-  clerkId          String            @unique
-  role             Role              @default(USER)
-  BatteryPassports BatteryPassport[]
+  id      Int    @id @default(autoincrement())
+  clerkId String @unique
+  role    Role   @default(USER)
 }
 
 enum Role {
@@ -23,14 +22,17 @@ enum Role {
 
 model BatteryPassport {
   id           Int            @id @default(autoincrement())
-  Account      Account?       @relation(fields: [accountId], references: [id])
-  accountId    Int?
+  clerkId      String
   soh          Float
   cellType     CELL_TYPE
   manufacturer MANUFACTURER
   status       BATTERY_STATUS @default(FIRST_LIFE)
+  brand        String
+  model        String
+  purchaseDate String
+  homeAddress  String
 
-  @@index([accountId])
+  @@index([clerkId])
 }
 
 enum BATTERY_STATUS {
