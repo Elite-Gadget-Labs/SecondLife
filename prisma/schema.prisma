@@ -23,16 +23,38 @@ enum Role {
 model BatteryPassport {
   id           Int            @id @default(autoincrement())
   clerkId      String
-  soh          Float
+  soh          Int
   cellType     CELL_TYPE
   manufacturer MANUFACTURER
   status       BATTERY_STATUS @default(FIRST_LIFE)
-  brand        String
-  model        String
+  model           EV_MODEL
   purchaseDate String
   homeAddress  String
 
   @@index([clerkId])
+}
+
+enum EV_MODEL {
+  TESLA_MODEL_S
+  TESLA_MODEL_3
+  TESLA_MODEL_X
+  TESLA_MODEL_Y
+  CHEVROLET_BOLT_EV
+  NISSAN_LEAF
+  BMW_I3
+  AUDI_E_TRON
+  FORD_MUSTANG_MACH_E
+  VOLKSWAGEN_ID_4
+  PORSCHE_TAYCAN
+  HYUNDAI_KONA_ELECTRIC
+  KIA_NIRO_EV
+  MERCEDES_BENZ_EQC
+  JAGUAR_I_PACE
+  RIVIAN_R1T
+  LUCID_AIR
+  POLESTAR_2
+  BYTON_M_BYTE
+  FIAT_500E
 }
 
 enum BATTERY_STATUS {

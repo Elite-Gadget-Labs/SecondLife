@@ -27,23 +27,17 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const account = await prisma.account.findUnique({
-    where: {
-      clerkId: body.clerkId,
-    },
-  });
-
-  if (account)
-    return NextResponse.json(
-      { error: "Account already exists" },
-      { status: 400 }
-    );
-
-  const newAccount = await prisma.account.create({
+  const newBatteryPassport = await prisma.batteryPassport.create({
     data: {
       clerkId: body.clerkId,
+      soh: body.soh,
+      cellType: body.cellType,
+      manufacturer: body.manufacturer,
+      model: body.model,
+      purchaseDate: body.purchaseDate,
+      homeAddress: body.homeAddress,
     },
   });
 
-  return NextResponse.json(newAccount, { status: 201 });
+  return NextResponse.json(newBatteryPassport, { status: 201 });
 }

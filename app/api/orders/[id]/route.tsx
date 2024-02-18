@@ -20,7 +20,12 @@ export async function PUT(
   const updatedOrder = await prisma.order.update({
     where: { id: order.id },
     data: {
-      orderStatus: body.orderStatus, //TBC
+      orderDate: body.orderDate,
+      orderStatus: body.orderStatus,
+      batteryType: body.batteryType,
+      desiredSohRange: body.desiredSohRange,
+      orderAmount: body.orderAmount,
+      waitTimeMonths: body.waitTimeMonths,
     },
   });
 
