@@ -4,22 +4,22 @@ import "./globals.css";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Home | Second Life",
+    title: "Home | Second Life",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>
-          {children}
-          <Footer />
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+    return (
+        <ClerkProvider>
+            <html lang="en">
+                <body>
+                    {children}
+                    <Footer />
+                </body>
+            </html>
+        </ClerkProvider>
+    );
 }
