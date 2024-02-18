@@ -30,14 +30,14 @@ const PassportPage = () => {
 
   return (
     <div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-4">
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4 py-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Cell Type</CardTitle>
             <BatteryIcon />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{record?.cellType}</div>
+            <div className="text-xl font-bold">{record?.cellType}</div>
           </CardContent>
         </Card>
         <Card>
@@ -46,18 +46,16 @@ const PassportPage = () => {
             <FactoryIcon />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{record?.manufacturer}</div>
+            <div className="text-xl font-bold">{record?.manufacturer}</div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Purchase Date
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Purchase Date</CardTitle>
             <CalendarIcon />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{record?.purchaseDate}</div>
+            <div className="text-xl font-bold">{record?.purchaseDate}</div>
           </CardContent>
         </Card>
         <Card>
@@ -66,7 +64,7 @@ const PassportPage = () => {
             <StatusIcon />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{record?.status}</div>
+            <div className="text-xl font-bold">{record?.status}</div>
           </CardContent>
         </Card>
       </div>
