@@ -28,6 +28,10 @@ export default function HomeLayout({
                 },
                 body: JSON.stringify(userId),
             });
+            const data = await response.json();
+            if (data && data.role) {
+                localStorage.setItem("role", data.role);
+            }
         } catch (error) {
             console.log(error);
         }
