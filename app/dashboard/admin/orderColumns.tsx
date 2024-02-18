@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
+//@ts-ignore
 export const columns2: ColumnDef[] = [
     {
         accessorKey: "id",
