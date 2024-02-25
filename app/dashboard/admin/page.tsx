@@ -1,17 +1,31 @@
 "use client";
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DataTable } from "@/app/dashboard/admin/data-table";
-import { DataTable2 } from "@/app/dashboard/admin/data-table2";
-import { columns } from "@/app/dashboard/admin/inventoryColumns";
-import { columns2 } from "@/app/dashboard/admin/orderColumns";
-import { useEffect, useState } from "react";
-import { Microgrids } from "@/components/microgrids";
-import UserProfilesTab from "./UserProfilesTab";
+import React, { useEffect, useState } from "react";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/shadcn-ui/tabs";
+
+import UserProfilesTab from "../../../components/admin-ui/profiles/UserProfilesTab";
+import { DataTable } from "@/components/data-table";
+import { columns } from "../../../components/admin-ui/inventory/inventoryColumns";
+import { Microgrids } from "../../../components/admin-ui/microgrid/microgrids";
+import { columns2 } from "../../../components/admin-ui/orders/orderColumns";
+
+const tabTitles = {
+  "battery-market": "Battery Market",
+  orders: "Orders",
+  microgrids: "Microgrids",
+  users: "Users",
+};
+
+type TabKeys = keyof typeof tabTitles;
 
 const AdminPage = () => {
   const [data, setData] = useState([]);
   const [records, setRecords] = useState([]);
+  const [currentTab, setCurrentTab] = useState<TabKeys>("battery-market");
 
   useEffect(() => {
     fetch("/api/orders")
@@ -36,27 +50,33 @@ const AdminPage = () => {
     fetchData();
   }, []);
 
+  const handleTabChange = (value: string) => {
+    if (value in tabTitles) {
+      setCurrentTab(value as TabKeys);
+    }
+  };
+
   return (
     <>
-      <h1 className="text-2xl font-semibold pb-8">EV Battery Dashboard</h1>
+      <h1 className="text-2xl font-semibold pb-8">{tabTitles[currentTab]}</h1>
 
-      <Tabs defaultValue="battery-market">
+      <Tabs defaultValue="battery-market" onValueChange={handleTabChange}>
         <TabsList>
           <TabsTrigger value="battery-market">Battery Market</TabsTrigger>
           <TabsTrigger value="orders">Orders</TabsTrigger>
           <TabsTrigger value="microgrids">Microgrids</TabsTrigger>
           <TabsTrigger value="users">Users</TabsTrigger>
         </TabsList>
-        <TabsContent value="orders">
-          <DataTable2 columns={columns2} data={records} />
-        </TabsContent>
-        <TabsContent value="battery-market">
+        <TabsContent className="pt-4" value="battery-market">
           <DataTable columns={columns} data={data} />
         </TabsContent>
-        <TabsContent value="microgrids">
+        <TabsContent className="pt-4" value="orders">
+          <DataTable columns={columns2} data={records} />
+        </TabsContent>
+        <TabsContent className="pt-4" value="microgrids">
           <Microgrids />
         </TabsContent>
-        <TabsContent value="users">
+        <TabsContent className="pt-4" value="users">
           <UserProfilesTab />
         </TabsContent>
       </Tabs>

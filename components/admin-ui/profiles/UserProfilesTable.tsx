@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/components/shadcn-ui/table";
 import { AccountData } from "./types";
 
 // Define the DataTableProps with a generic type

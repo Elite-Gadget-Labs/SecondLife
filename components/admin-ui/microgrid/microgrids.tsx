@@ -1,9 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
+import { Button } from "@/components/shadcn-ui/button";
+import { Input } from "@/components/shadcn-ui/input";
+import { Label } from "@/components/shadcn-ui/label";
+import {
+  CardTitle,
+  CardHeader,
+  CardContent,
+  Card,
+} from "@/components/shadcn-ui/card";
 
 // Define a type for the microgrid objects
 interface Microgrid {
@@ -74,9 +79,6 @@ export function Microgrids() {
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-      <div className="flex items-center">
-        <h1 className="font-semibold text-lg md:text-2xl">Microgrids</h1>
-      </div>
       <div className="border shadow-sm rounded-lg">
         <form className="p-4" onSubmit={generateMicrogrids}>
           <div className="space-y-2">

@@ -36,10 +36,7 @@ const UserProfilesTab = () => {
   }
 
   return (
-    <div>
-      <h1>User Profiles</h1>
-      <UserProfilesTable columns={userProfilesColumns} data={userProfiles} />
-    </div>
+    <UserProfilesTable columns={userProfilesColumns} data={userProfiles} />
   );
 };
 

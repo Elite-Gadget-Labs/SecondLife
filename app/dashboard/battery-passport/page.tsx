@@ -1,10 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { SohChart } from "@/components/sohChart";
-import { Soh } from "@/components/soh";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BatteryIcon, FactoryIcon, CalendarIcon, StatusIcon } from "./icons";
+import { SohChart } from "@/components/dashboard-ui/battery-passport/sohChart";
+import { Soh } from "@/components/dashboard-ui/battery-passport/soh";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/shadcn-ui/card";
+import { BatteryIcon, FactoryIcon, CalendarIcon, StatusIcon } from "../../../components/dashboard-ui/battery-passport/icons";
 
 interface RecordType {
   cellType: string;
