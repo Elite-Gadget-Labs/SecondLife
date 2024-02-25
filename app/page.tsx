@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   BatteryIcon,
@@ -58,6 +58,10 @@ const items = [
 ];
 
 const LandingPage = () => {
+  useEffect(() => {
+    localStorage.removeItem("role");
+  }, []);
+
   return (
     <div className="bg-slate-950">
       <LampContainer>
