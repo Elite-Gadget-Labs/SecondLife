@@ -18,7 +18,6 @@ export async function GET(request: NextRequest) {
           firstName: memberData.firstName,
           lastName: memberData.lastName,
           email: memberData.emailAddresses[0].emailAddress,
-          // any other Clerk member data you need
         };
       } catch (error) {
         console.error("Error fetching Clerk member data:", error);

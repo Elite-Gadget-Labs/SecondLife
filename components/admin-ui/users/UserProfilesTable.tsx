@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   ColumnDef,
@@ -15,12 +16,27 @@ import {
   TableRow,
 } from "@/components/shadcn-ui/table";
 import { AccountData } from "./types";
+import { useOrganization } from "@clerk/nextjs";
+import type { OrganizationMembershipResource } from "@clerk/types";
 
 // Define the DataTableProps with a generic type
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[];
   data: TData[];
 }
+
+// Function to make a user an admin
+const makeAdmin = async (user: AccountData) => {
+  try {
+    console.log("Making user an admin", user);
+    // Example: await updateUserRole(user.id, 'ADMIN');
+
+    // Update UI or state as necessary
+  } catch (error) {
+    // Handle any errors here
+    console.error("Error making user admin", error);
+  }
+};
 
 const actionColumns: ColumnDef<AccountData>[] = [
   {
@@ -29,7 +45,7 @@ const actionColumns: ColumnDef<AccountData>[] = [
     cell: ({ row }: { row: Row<AccountData> }) => (
       <button
         className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
-        onClick={() => console.log("Make Admin", row.original)}
+        onClick={() => makeAdmin(row.original)}
       >
         Make Admin
       </button>
@@ -49,12 +65,10 @@ const actionColumns: ColumnDef<AccountData>[] = [
   },
 ];
 
-// UserProfilesTable component
 export const UserProfilesTable: React.FC<DataTableProps<AccountData>> = ({
   columns,
   data,
 }) => {
-  // Combine the existing columns with the action columns
   const combinedColumns = React.useMemo(
     () => [...columns, ...actionColumns],
     [columns]

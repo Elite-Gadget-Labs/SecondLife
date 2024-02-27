@@ -7,7 +7,7 @@ import {
   TabsTrigger,
 } from "@/components/shadcn-ui/tabs";
 
-import UserProfilesTab from "../../../components/admin-ui/profiles/UserProfilesTab";
+import UserProfilesTab from "../../../components/admin-ui/users/UserProfilesTab";
 import { DataTable } from "@/components/data-table";
 import { columns } from "../../../components/admin-ui/inventory/inventoryColumns";
 import { Microgrids } from "../../../components/admin-ui/microgrid/microgrids";

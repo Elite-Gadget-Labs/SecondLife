@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useOrganizationList } from "@clerk/nextjs";
-import { UserProfilesTable } from "./UserProfilesTable";
 import userProfilesColumns from "./userProfilesColumns";
 import { AccountData } from "./types";
+import UserProfilesTable from "./UserProfilesTable";
 
 const UserProfilesTab = () => {
   const [userProfiles, setUserProfiles] = useState<AccountData[]>([]);
